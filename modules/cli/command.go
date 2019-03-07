@@ -33,7 +33,7 @@ type Command struct {
 	HideHelp bool
 }
 
-// Invokes the command given the context, parses ctx.Args() to generate command-specific flags
+// Run: Invokes the command given the context, parses ctx.Args() to generate command-specific flags
 func (c Command) Run(ctx *Context) error {
 
 	if len(c.Subcommands) > 0 || c.Before != nil {
@@ -102,7 +102,7 @@ func (c Command) Run(ctx *Context) error {
 	return nil
 }
 
-// Returns true if Command.Name or Command.ShortName matches given name
+// HasName returns true if Command.Name or Command.ShortName matches given name
 func (c Command) HasName(name string) bool {
 	return c.Name == name || c.ShortName == name
 }

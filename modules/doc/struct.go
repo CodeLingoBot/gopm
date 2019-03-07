@@ -83,7 +83,7 @@ func NewDefaultPkg(importPath string) *Pkg {
 	return NewPkg(importPath, BRANCH, "")
 }
 
-// If the package is fixed and no need to updated.
+// IsFixed: If the package is fixed and no need to updated.
 // For commit, tag and local, it's fixed.
 func (pkg *Pkg) IsFixed() bool {
 	if pkg.Type == BRANCH || len(pkg.Value) == 0 {
@@ -186,7 +186,7 @@ func (n *Node) CopyToGopath() error {
 	return nil
 }
 
-// If vcs has been detected, use corresponding command to update package.
+// UpdateByVcs: If vcs has been detected, use corresponding command to update package.
 func (n *Node) UpdateByVcs(vcs string) error {
 	switch vcs {
 	case "git":

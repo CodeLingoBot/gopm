@@ -51,7 +51,7 @@ func compileTime() time.Time {
 	return info.ModTime()
 }
 
-// Creates a new cli Application with some reasonable defaults for Name, Usage, Version and Action.
+// NewApp: Creates a new cli Application with some reasonable defaults for Name, Usage, Version and Action.
 func NewApp() *App {
 	return &App{
 		Name:         os.Args[0],
@@ -63,7 +63,7 @@ func NewApp() *App {
 	}
 }
 
-// Entry point to the cli app. Parses the arguments slice and routes to the proper flag/args combination
+// Run: Entry point to the cli app. Parses the arguments slice and routes to the proper flag/args combination
 func (a *App) Run(arguments []string) error {
 	// append help to commands
 	if a.Command(helpCommand.Name) == nil && !a.HideHelp {
@@ -131,7 +131,7 @@ func (a *App) Run(arguments []string) error {
 	return nil
 }
 
-// Another entry point to the cli app, takes care of passing arguments and error handling
+// RunAndExitOnError: Another entry point to the cli app, takes care of passing arguments and error handling
 func (a *App) RunAndExitOnError() {
 	if err := a.Run(os.Args); err != nil {
 		os.Stderr.WriteString(fmt.Sprintln(err))
@@ -139,7 +139,7 @@ func (a *App) RunAndExitOnError() {
 	}
 }
 
-// Invokes the subcommand given the context, parses ctx.Args() to generate command-specific flags
+// RunAsSubcommand: Invokes the subcommand given the context, parses ctx.Args() to generate command-specific flags
 func (a *App) RunAsSubcommand(ctx *Context) error {
 	// append help to commands
 	if len(a.Commands) > 0 {
@@ -218,7 +218,7 @@ func (a *App) RunAsSubcommand(ctx *Context) error {
 	return nil
 }
 
-// Returns the named command on App. Returns nil if the command does not exist
+// Command returns the named command on App. Returns nil if the command does not exist
 func (a *App) Command(name string) *Command {
 	for _, c := range a.Commands {
 		if c.HasName(name) {

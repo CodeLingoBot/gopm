@@ -103,7 +103,7 @@ func ShowAppHelp(c *Context) {
 	HelpPrinter(AppHelpTemplate, c.App)
 }
 
-// Prints the list of subcommands as the default app completion method
+// DefaultAppComplete: Prints the list of subcommands as the default app completion method
 func DefaultAppComplete(c *Context) {
 	for _, command := range c.App.Commands {
 		fmt.Println(command.Name)
@@ -113,7 +113,7 @@ func DefaultAppComplete(c *Context) {
 	}
 }
 
-// Prints help for the given command
+// ShowCommandHelp: Prints help for the given command
 func ShowCommandHelp(c *Context, command string) {
 	for _, c := range c.App.Commands {
 		if c.HasName(command) {
@@ -129,12 +129,12 @@ func ShowCommandHelp(c *Context, command string) {
 	}
 }
 
-// Prints help for the given subcommand
+// ShowSubcommandHelp: Prints help for the given subcommand
 func ShowSubcommandHelp(c *Context) {
 	HelpPrinter(SubcommandHelpTemplate, c.App)
 }
 
-// Prints the version number of the App
+// ShowVersion: Prints the version number of the App
 func ShowVersion(c *Context) {
 	VersionPrinter(c)
 }
@@ -143,7 +143,7 @@ func printVersion(c *Context) {
 	fmt.Printf("%v version %v\n", c.App.Name, c.App.Version)
 }
 
-// Prints the lists of commands within a given context
+// ShowCompletions: Prints the lists of commands within a given context
 func ShowCompletions(c *Context) {
 	a := c.App
 	if a != nil && a.BashComplete != nil {
@@ -151,7 +151,7 @@ func ShowCompletions(c *Context) {
 	}
 }
 
-// Prints the custom completions for a given command
+// ShowCommandCompletions: Prints the custom completions for a given command
 func ShowCommandCompletions(ctx *Context, command string) {
 	c := ctx.App.Command(command)
 	if c != nil && c.BashComplete != nil {

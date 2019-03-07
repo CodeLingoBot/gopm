@@ -20,7 +20,7 @@ import (
 	"strings"
 )
 
-// OpenFile is the generalized open call; most users will use Open
+// Open: Open is the generalized open call; most users will use Open
 // instead. It opens the named zip file with specified flag
 // (O_RDONLY etc.) if applicable. If successful,
 // methods on the returned ZipArchive can be used for I/O.
